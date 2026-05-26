@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<title>Annah George — Composer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Italianno&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF3EC;
+    --cream-deep: #F3E8DC;
+    --blush: #F9DCE3;
+    --blush-soft: #FCE9EF;
+    --rose: #D4889A;
+    --rose-deep: #B85F76;
+    --wine: #4A1F2F;
+    --wine-soft: #6E3349;
+    --gold: #C9A961;
+    --ink: #2B1620;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 1.8rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: rgba(250, 243, 236, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(74, 31, 47, 0.08);
+  }
+
+  .nav-logo {
+    font-family: 'Italianno', cursive;
+    font-size: 2.2rem;
+    color: var(--wine);
+    line-height: 1;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+  .nav-links a {
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--wine);
+    text-decoration: none;
+    font-weight: 400;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--rose-deep);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--rose-deep); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8rem 2rem 4rem;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--blush-soft) 50%, var(--cream) 100%);
+    overflow: hidden;
+  }
+
+  .staff-decoration {
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  .staff-decoration.top { top: 15%; transform: rotate(-2deg); }
+  .staff-decoration.bottom { bottom: 12%; transform: rotate(1.5deg); }
+
+  .staff-line { width: 100%; height: 1px; background: var(--wine); margin: 12px 0; }
+
+  .floating-note {
+    position: absolute;
+    color: var(--rose);
+    opacity: 0.3;
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+  }
+  .floating-note.n1 { top: 18%; left: 10%; font-size: 2.5rem; animation-delay: 0s; }
+  .floating-note.n2 { top: 30%; right: 12%; font-size: 3rem; animation-delay: 2s; }
+  .floating-note.n3 { bottom: 25%; left: 15%; font-size: 2rem; animation-delay: 4s; }
+  .floating-note.n4 { bottom: 30%; right: 18%; font-size: 2.8rem; animation-delay: 1s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.1rem;
+    color: var(--rose-deep);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    color: var(--wine);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out 0.4s forwards;
+  }
+
+  .hero h1 .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--rose-deep);
+    display: block;
+    font-family: 'Italianno', cursive;
+    font-size: clamp(4rem, 11vw, 10rem);
+    line-height: 0.85;
+    margin-top: -0.3em;
+  }
+
+  .hero-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    color: var(--wine-soft);
+    max-width: 600px;
+    margin: 2rem auto 0;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out 0.6s forwards;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--wine-soft);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out 1s forwards, bounce 2s ease-in-out 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  section { padding: 8rem 2rem; position: relative; }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--rose-deep);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::before {
+    content: "";
+    width: 40px; height: 1px;
+    background: var(--rose-deep);
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: var(--wine);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+  }
+
+  .section-title .script {
+    font-family: 'Italianno', cursive;
+    color: var(--rose-deep);
+    font-size: 1.4em;
+    line-height: 0.8;
+  }
+
+  .about { background: var(--cream); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-image {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: 4px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--blush), var(--rose));
+    box-shadow: 25px 25px 0 var(--blush-soft);
+  }
+
+  .about-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--wine-soft);
+  }
+
+  .about-text p { margin-bottom: 1.5rem; }
+
+  .about-text p:first-of-type::first-letter {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 4.5rem;
+    float: left;
+    line-height: 0.85;
+    margin: 0.1em 0.1em 0 -0.05em;
+    color: var(--rose-deep);
+  }
+
+  .about-signature {
+    font-family: 'Italianno', cursive;
+    font-size: 2.5rem;
+    color: var(--rose-deep);
+    margin-top: 2rem;
+    transform: rotate(-3deg);
+    display: inline-block;
+  }
+
+  .music {
+    background: linear-gradient(180deg, var(--cream) 0%, var(--blush-soft) 100%);
+    position: relative;
+  }
+
+  .music-intro {
+    max-width: 600px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: var(--wine-soft);
+    margin-bottom: 4rem;
+    line-height: 1.6;
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .video-card {
+    background: var(--cream);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(74, 31, 47, 0.08);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    position: relative;
+  }
+
+  .video-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 80px rgba(74, 31, 47, 0.15);
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    background: var(--wine);
+    overflow: hidden;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  .video-info { padding: 1.8rem; }
+
+  .video-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: var(--wine);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .video-meta {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--rose-deep);
+    letter-spacing: 0.05em;
+  }
+
+  .gallery { background: var(--cream); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 80px;
+    gap: 1.5rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background: linear-gradient(135deg, var(--blush), var(--rose));
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    display: block;
+  }
+
+  .gallery-item:hover img { transform: scale(1.05); }
+  .gallery-item:hover { transform: translateY(-4px); }
+
+  /* Asymmetric layout for 5 images */
+  .g1 { grid-column: span 7; grid-row: span 5; }
+  .g2 { grid-column: span 5; grid-row: span 3; }
+  .g3 { grid-column: span 5; grid-row: span 2; }
+  .g4 { grid-column: span 8; grid-row: span 3; }
+  .g5 { grid-column: span 4; grid-row: span 3; }
+
+  .contact {
+    background: linear-gradient(180deg, var(--blush-soft) 0%, var(--cream-deep) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact::before {
+    content: "♪";
+    position: absolute;
+    top: 10%; right: 8%;
+    font-size: 15rem;
+    color: var(--rose);
+    opacity: 0.08;
+    font-family: serif;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-text p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--wine-soft);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-details {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(74, 31, 47, 0.15);
+  }
+
+  .contact-detail { margin-bottom: 1.2rem; }
+
+  .contact-detail-label {
+    font-family: 'Fraunces', serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--rose-deep);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-detail-value {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    color: var(--wine);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .contact-detail-value:hover { color: var(--rose-deep); }
+
+  .contact-form {
+    background: var(--cream);
+    padding: 3rem;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(74, 31, 47, 0.08);
+  }
+
+  .form-group { margin-bottom: 1.8rem; }
+
+  .form-group label {
+    font-family: 'Fraunces', serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--wine);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 0;
+    border: none;
+    border-bottom: 1px solid rgba(74, 31, 47, 0.2);
+    background: transparent;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--ink);
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-bottom-color: var(--rose-deep);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .submit-btn {
+    background: var(--wine);
+    color: var(--cream);
+    border: none;
+    padding: 1.1rem 3rem;
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-btn::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--rose-deep);
+    transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .submit-btn span { position: relative; z-index: 1; }
+  .submit-btn:hover::before { left: 0; }
+
+  footer {
+    background: var(--wine);
+    color: var(--cream);
+    padding: 4rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .footer-name {
+    font-family: 'Italianno', cursive;
+    font-size: 3.5rem;
+    color: var(--blush);
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+
+  .footer-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--blush-soft);
+    opacity: 0.8;
+    margin-bottom: 3rem;
+  }
+
+  .footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-socials a {
+    color: var(--blush);
+    text-decoration: none;
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    transition: color 0.3s ease;
+  }
+
+  .footer-socials a:hover { color: var(--cream); }
+
+  .footer-copyright {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--blush-soft);
+    opacity: 0.6;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(252, 233, 239, 0.1);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .nav-links a { font-size: 0.7rem; letter-spacing: 0.15em; }
+    section { padding: 5rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-image { box-shadow: 15px 15px 0 var(--blush-soft); }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-form { padding: 2rem; }
+    .gallery-grid {
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 70px;
+    }
+    .g1 { grid-column: span 6; grid-row: span 4; }
+    .g2 { grid-column: span 3; grid-row: span 3; }
+    .g3 { grid-column: span 3; grid-row: span 3; }
+    .g4 { grid-column: span 6; grid-row: span 3; }
+    .g5 { grid-column: span 6; grid-row: span 3; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-logo { font-size: 1.8rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Annah George</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="staff-decoration top">
+    <div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div>
+  </div>
+  <div class="staff-decoration bottom">
+    <div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div>
+  </div>
+
+  <div class="floating-note n1">♪</div>
+  <div class="floating-note n2">♫</div>
+  <div class="floating-note n3">♩</div>
+  <div class="floating-note n4">♬</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">— composer & sound artist —</div>
+    <h1>
+      Annah
+      <span class="italic">George</span>
+    </h1>
+    <p class="hero-tagline">
+      Houston-born composer bridging film, songwriting, and contemporary pop — currently at the Royal Northern College of Music, Manchester
+    </p>
+  </div>
+
+  <div class="scroll-indicator">scroll to listen ↓</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        <img src="images/IMG-20260526-WA0034.jpg" alt="Annah George" />
+      </div>
+      <div class="about-text reveal">
+        <div class="section-label">About</div>
+        <h2 class="section-title">
+          A little
+          <span class="script">about her</span>
+        </h2>
+        <p>
+          Annah George is a composer and musician from Houston, Texas, currently studying at the Royal Northern College of Music under Dr. Anna Appleby and Dr. Larry Goves.
+        </p>
+        <p>
+          Her artistic voice is shaped by a foundation in classical violin and pop vocal performance, resulting in a style that moves fluidly between genres and disciplines. At the core of her music is a deep commitment to melody and lyricism, with a natural instinct to treat every instrument as if it were singing its own line.
+        </p>
+        <p>
+          She explores themes of love, beauty, humanity, and playfulness, often balancing rhythmic vitality with music that carries depth and invites the listener into deeper reflection.
+        </p>
+        <p>
+          Annah is developing a distinctive creative identity that bridges film composition and contemporary pop artistry, with a practice that spans screen, songwriting, and recorded music.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section class="music" id="music">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Listen</div>
+      <h2 class="section-title">
+        Selected
+        <span class="script">works</span>
+      </h2>
+      <p class="music-intro">
+        A selection of recent compositions, performances, and recordings. Each piece tells its own story.
+      </p>
+    </div>
+
+    <div class="video-grid">
+      <div class="video-card reveal">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube-nocookie.com/embed/fQM8VKNL7GY" title="Unconditional — Annah George" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">Unconditional</h3>
+          <p class="video-meta">Original composition</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube-nocookie.com/embed/Tgf5a6fcDcY" title="The Unicorn — Annah George" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">The Unicorn</h3>
+          <p class="video-meta">Original composition</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube-nocookie.com/embed/QYxwG5ekEvU" title="What is it? — Annah George" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">What is it?</h3>
+          <p class="video-meta">Original composition</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Gallery</div>
+      <h2 class="section-title">
+        Behind the
+        <span class="script">music</span>
+      </h2>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item g1 reveal">
+        <img src="images/IMG-20260216-WA0004.jpg" alt="" />
+      </div>
+      <div class="gallery-item g2 reveal">
+        <img src="images/IMG-20260526-WA0036.jpg" alt="" />
+      </div>
+      <div class="gallery-item g3 reveal">
+        <img src="images/IMG-20260526-WA0035.jpg" alt="" />
+      </div>
+      <div class="gallery-item g4 reveal">
+        <img src="images/IMG-20260526-WA0037.jpg" alt="" />
+      </div>
+      <div class="gallery-item g5 reveal">
+        <img src="images/IMG-20260526-WA0038.jpg" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-text reveal">
+        <div class="section-label">Get in touch</div>
+        <h2 class="section-title">
+          Let's
+          <span class="script">connect</span>
+        </h2>
+        <p>
+          Whether you're a performer looking for new repertoire, a fellow composer, a collaborator with an idea, or simply someone who enjoyed the music — I'd love to hear from you.
+        </p>
+        <p>
+          I'm always open to commissions, collaborations, and conversations about sound.
+        </p>
+
+        <div class="contact-details">
+          <div class="contact-detail">
+            <span class="contact-detail-label">Email</span>
+            <a href="mailto:missmusiccomposer@gmail.com" class="contact-detail-value">missmusiccomposer@gmail.com</a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Alternate Email</span>
+            <a href="mailto:missmusiccomposer@outlook.com" class="contact-detail-value">missmusiccomposer@outlook.com</a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Instagram</span>
+            <a href="https://www.instagram.com/missmusiccomposer" target="_blank" rel="noopener" class="contact-detail-value">@missmusiccomposer</a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">YouTube</span>
+            <a href="https://youtube.com/@missmusiccomposer" target="_blank" rel="noopener" class="contact-detail-value">@missmusiccomposer</a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Based in</span>
+            <span class="contact-detail-value">Manchester, United Kingdom</span>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Studying at</span>
+            <span class="contact-detail-value">Royal Northern College of Music</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" />
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+        </div>
+        <button type="button" class="submit-btn" onclick="handleSubmit()"><span>Send Message</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Annah George</div>
+  <div class="footer-tagline">composer · sound artist · storyteller</div>
+  <div class="footer-socials">
+    <a href="https://youtube.com/@missmusiccomposer" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.instagram.com/missmusiccomposer" target="_blank" rel="noopener">Instagram</a>
+    <a href="mailto:missmusiccomposer@gmail.com">Email</a>
+  </div>
+  <div class="footer-copyright">
+    © 2026 Annah George. All works original. Made with love in Manchester.
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function handleSubmit() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    if (!name || !email || !message) {
+      alert('Please fill in your name, email, and message.');
+      return;
+    }
+    const subject = document.getElementById('subject').value || 'Hello from your website';
+    window.location.href = `mailto:missmusiccomposer@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message)}`;
+  }
+</script>
+
+</body>
+</html>
