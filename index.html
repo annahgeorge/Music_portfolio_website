@@ -7,7 +7,7 @@
 <title>Annah George — Composer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Italianno&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,200;1,9..144,300;1,9..144,400&family=Italianno&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #FAF3EC;
@@ -18,7 +18,6 @@
     --rose-deep: #B85F76;
     --wine: #4A1F2F;
     --wine-soft: #6E3349;
-    --gold: #C9A961;
     --ink: #2B1620;
   }
 
@@ -40,57 +39,77 @@
     inset: 0;
     pointer-events: none;
     z-index: 1000;
-    opacity: 0.06;
+    opacity: 0.05;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
   }
 
+  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    padding: 1.8rem 4rem;
+    padding: 1.8rem 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    background: rgba(250, 243, 236, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(74, 31, 47, 0.08);
+    background: rgba(250, 243, 236, 0);
+    transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease;
+  }
+
+  nav.scrolled {
+    background: rgba(250, 243, 236, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 1.2rem 3rem;
+    border-bottom: 1px solid rgba(74, 31, 47, 0.06);
   }
 
   .nav-logo {
     font-family: 'Italianno', cursive;
-    font-size: 2.2rem;
-    color: var(--wine);
+    font-size: 2.4rem;
+    color: var(--cream);
     line-height: 1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    transition: color 0.4s ease, text-shadow 0.4s ease;
+  }
+
+  nav.scrolled .nav-logo {
+    color: var(--wine);
+    text-shadow: none;
   }
 
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 
   .nav-links a {
     font-family: 'Fraunces', serif;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--wine);
+    letter-spacing: 0.28em;
+    color: var(--cream);
     text-decoration: none;
     font-weight: 400;
     position: relative;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  }
+
+  nav.scrolled .nav-links a {
+    color: var(--wine);
+    text-shadow: none;
   }
 
   .nav-links a::after {
     content: "";
     position: absolute;
-    bottom: -4px; left: 0;
+    bottom: -6px; left: 0;
     width: 0; height: 1px;
-    background: var(--rose-deep);
+    background: currentColor;
     transition: width 0.3s ease;
   }
 
-  .nav-links a:hover { color: var(--rose-deep); }
   .nav-links a:hover::after { width: 100%; }
 
+  /* HERO — full bleed image with pink overlay */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -98,96 +117,78 @@
     justify-content: center;
     position: relative;
     padding: 8rem 2rem 4rem;
-    background: linear-gradient(135deg, var(--cream) 0%, var(--blush-soft) 50%, var(--cream) 100%);
     overflow: hidden;
+    background-image:
+      linear-gradient(135deg, rgba(252, 233, 239, 0.55) 0%, rgba(249, 220, 227, 0.50) 40%, rgba(212, 136, 154, 0.55) 100%),
+      url('IMG-20260216-WA0004.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
   }
 
-  .staff-decoration {
+  /* Soft vignette */
+  .hero::after {
+    content: "";
     position: absolute;
-    width: 100%;
-    height: 80px;
-    opacity: 0.15;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(74, 31, 47, 0.25) 100%);
     pointer-events: none;
-  }
-  .staff-decoration.top { top: 15%; transform: rotate(-2deg); }
-  .staff-decoration.bottom { bottom: 12%; transform: rotate(1.5deg); }
-
-  .staff-line { width: 100%; height: 1px; background: var(--wine); margin: 12px 0; }
-
-  .floating-note {
-    position: absolute;
-    color: var(--rose);
-    opacity: 0.3;
-    pointer-events: none;
-    animation: float 8s ease-in-out infinite;
-  }
-  .floating-note.n1 { top: 18%; left: 10%; font-size: 2.5rem; animation-delay: 0s; }
-  .floating-note.n2 { top: 30%; right: 12%; font-size: 3rem; animation-delay: 2s; }
-  .floating-note.n3 { bottom: 25%; left: 15%; font-size: 2rem; animation-delay: 4s; }
-  .floating-note.n4 { bottom: 30%; right: 18%; font-size: 2.8rem; animation-delay: 1s; }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
   }
 
   .hero-content {
     text-align: center;
     position: relative;
     z-index: 2;
-    max-width: 900px;
+    max-width: 1100px;
+    padding: 0 1rem;
   }
 
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-eyebrow {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 1.1rem;
-    color: var(--rose-deep);
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-    opacity: 0;
-    animation: fadeInUp 1.2s ease-out 0.2s forwards;
   }
 
   .hero h1 {
     font-family: 'Fraunces', serif;
     font-weight: 300;
-    font-size: clamp(3.5rem, 9vw, 8rem);
-    color: var(--wine);
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-    opacity: 0;
-    animation: fadeInUp 1.2s ease-out 0.4s forwards;
+    color: var(--cream);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.3);
   }
 
-  .hero h1 .italic {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--rose-deep);
+  .hero h1 .first-name {
+    display: block;
+    font-size: clamp(4rem, 11vw, 10rem);
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeInUp 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  }
+
+  .hero h1 .last-name {
     display: block;
     font-family: 'Italianno', cursive;
-    font-size: clamp(4rem, 11vw, 10rem);
-    line-height: 0.85;
-    margin-top: -0.3em;
+    font-size: clamp(5rem, 14vw, 13rem);
+    font-weight: 400;
+    color: var(--blush);
+    margin-top: 1.5rem;
+    line-height: 0.9;
+    opacity: 0;
+    animation: fadeInUp 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
   }
 
   .hero-tagline {
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(1rem, 1.5vw, 1.3rem);
-    color: var(--wine-soft);
-    max-width: 600px;
-    margin: 2rem auto 0;
+    font-size: clamp(1rem, 1.3vw, 1.25rem);
+    color: var(--cream);
+    max-width: 620px;
+    margin: 3rem auto 0;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.4);
     opacity: 0;
-    animation: fadeInUp 1.2s ease-out 0.6s forwards;
+    animation: fadeInUp 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
   }
 
   .scroll-indicator {
@@ -197,73 +198,129 @@
     transform: translateX(-50%);
     font-family: 'Fraunces', serif;
     font-style: italic;
-    font-size: 0.85rem;
-    color: var(--wine-soft);
-    letter-spacing: 0.2em;
+    font-size: 0.8rem;
+    color: var(--cream);
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     opacity: 0;
-    animation: fadeInUp 1.2s ease-out 1s forwards, bounce 2s ease-in-out 2s infinite;
+    z-index: 2;
+    animation: fadeInUp 1.3s ease-out 1.2s forwards, bounce 2.5s ease-in-out 2.5s infinite;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.4);
   }
 
   @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.85; }
+    50% { transform: translateX(-50%) translateY(10px); opacity: 1; }
   }
 
-  section { padding: 8rem 2rem; position: relative; }
-  .container { max-width: 1200px; margin: 0 auto; }
+  /* SECTIONS */
+  section {
+    padding: 9rem 2rem;
+    position: relative;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .container-wide {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* Chloe-style repeated header */
+  .section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
 
   .section-label {
     font-family: 'Fraunces', serif;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.4em;
     color: var(--rose-deep);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    position: relative;
   }
 
-  .section-label::before {
+  .section-label::before,
+  .section-label::after {
     content: "";
-    width: 40px; height: 1px;
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 1px;
     background: var(--rose-deep);
   }
+  .section-label::before { right: calc(100% + 1rem); }
+  .section-label::after { left: calc(100% + 1rem); }
 
   .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    color: var(--wine);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .section-title .script {
+    font-family: 'Italianno', cursive;
+    color: var(--rose-deep);
+    font-size: 1.5em;
+    line-height: 0.8;
+    font-weight: 400;
+    display: inline-block;
+    transform: translateY(0.05em);
+  }
+
+  /* Echo headings (Chloe Flower signature) */
+  .echo-stack {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .echo-stack .echo {
     font-family: 'Fraunces', serif;
     font-weight: 300;
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     color: var(--wine);
     line-height: 1;
     letter-spacing: -0.02em;
-    margin-bottom: 3rem;
+    opacity: 0.5;
   }
+  .echo-stack .echo:nth-child(2) { opacity: 0.75; }
+  .echo-stack .echo:nth-child(3) { opacity: 1; }
 
-  .section-title .script {
+  .echo-stack .echo .script {
     font-family: 'Italianno', cursive;
     color: var(--rose-deep);
-    font-size: 1.4em;
+    font-size: 1.5em;
     line-height: 0.8;
+    font-weight: 400;
+    display: inline-block;
+    transform: translateY(0.05em);
   }
 
+  /* ABOUT */
   .about { background: var(--cream); }
 
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 5rem;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 6rem;
     align-items: center;
   }
 
   .about-image {
     position: relative;
     aspect-ratio: 4/5;
-    border-radius: 4px;
     overflow: hidden;
     background: linear-gradient(135deg, var(--blush), var(--rose));
-    box-shadow: 25px 25px 0 var(--blush-soft);
+    box-shadow: 30px 30px 0 var(--blush-soft);
   }
 
   .about-image img {
@@ -272,13 +329,43 @@
     display: block;
   }
 
+  .about-text-block {
+    padding-right: 1rem;
+  }
+
+  .about-text-block .section-label {
+    text-align: left;
+    margin-bottom: 1.2rem;
+  }
+  .about-text-block .section-label::before { display: none; }
+
+  .about-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    color: var(--wine);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+  }
+
+  .about-title .script {
+    font-family: 'Italianno', cursive;
+    color: var(--rose-deep);
+    font-size: 1.5em;
+    line-height: 0.8;
+    font-weight: 400;
+    display: inline-block;
+    transform: translateY(0.05em);
+  }
+
   .about-text {
     font-size: 1.15rem;
-    line-height: 1.8;
+    line-height: 1.85;
     color: var(--wine-soft);
   }
 
-  .about-text p { margin-bottom: 1.5rem; }
+  .about-text p { margin-bottom: 1.3rem; }
 
   .about-text p:first-of-type::first-letter {
     font-family: 'Fraunces', serif;
@@ -287,33 +374,14 @@
     font-size: 4.5rem;
     float: left;
     line-height: 0.85;
-    margin: 0.1em 0.1em 0 -0.05em;
+    margin: 0.08em 0.1em 0 -0.05em;
     color: var(--rose-deep);
   }
 
-  .about-signature {
-    font-family: 'Italianno', cursive;
-    font-size: 2.5rem;
-    color: var(--rose-deep);
-    margin-top: 2rem;
-    transform: rotate(-3deg);
-    display: inline-block;
-  }
-
+  /* MUSIC */
   .music {
     background: linear-gradient(180deg, var(--cream) 0%, var(--blush-soft) 100%);
     position: relative;
-  }
-
-  .music-intro {
-    max-width: 600px;
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 1.2rem;
-    color: var(--wine-soft);
-    margin-bottom: 4rem;
-    line-height: 1.6;
   }
 
   .video-grid {
@@ -324,7 +392,6 @@
 
   .video-card {
     background: var(--cream);
-    border-radius: 4px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(74, 31, 47, 0.08);
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
@@ -350,15 +417,19 @@
     border: none;
   }
 
-  .video-info { padding: 1.8rem; }
+  .video-info {
+    padding: 2rem 1.8rem;
+    text-align: center;
+  }
 
   .video-title {
     font-family: 'Fraunces', serif;
     font-weight: 400;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: var(--wine);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     line-height: 1.2;
+    letter-spacing: -0.01em;
   }
 
   .video-meta {
@@ -369,19 +440,19 @@
     letter-spacing: 0.05em;
   }
 
+  /* GALLERY */
   .gallery { background: var(--cream); }
 
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: 80px;
+    grid-auto-rows: 90px;
     gap: 1.5rem;
   }
 
   .gallery-item {
     position: relative;
     overflow: hidden;
-    border-radius: 4px;
     background: linear-gradient(135deg, var(--blush), var(--rose));
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
@@ -397,13 +468,13 @@
   .gallery-item:hover img { transform: scale(1.05); }
   .gallery-item:hover { transform: translateY(-4px); }
 
-  /* Asymmetric layout for 5 images */
   .g1 { grid-column: span 7; grid-row: span 5; }
   .g2 { grid-column: span 5; grid-row: span 3; }
   .g3 { grid-column: span 5; grid-row: span 2; }
-  .g4 { grid-column: span 8; grid-row: span 3; }
-  .g5 { grid-column: span 4; grid-row: span 3; }
+  .g4 { grid-column: span 5; grid-row: span 3; }
+  .g5 { grid-column: span 7; grid-row: span 3; }
 
+  /* CONTACT */
   .contact {
     background: linear-gradient(180deg, var(--blush-soft) 0%, var(--cream-deep) 100%);
     position: relative;
@@ -413,11 +484,12 @@
   .contact::before {
     content: "♪";
     position: absolute;
-    top: 10%; right: 8%;
-    font-size: 15rem;
+    top: 8%; right: 6%;
+    font-size: 18rem;
     color: var(--rose);
-    opacity: 0.08;
+    opacity: 0.07;
     font-family: serif;
+    line-height: 1;
   }
 
   .contact-grid {
@@ -425,39 +497,35 @@
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: start;
-  }
-
-  .contact-text p {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    color: var(--wine-soft);
-    margin-bottom: 1.5rem;
+    margin-top: 2rem;
   }
 
   .contact-details {
-    margin-top: 2.5rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid rgba(74, 31, 47, 0.15);
+    padding-top: 1rem;
   }
 
-  .contact-detail { margin-bottom: 1.2rem; }
+  .contact-detail {
+    margin-bottom: 1.8rem;
+  }
 
   .contact-detail-label {
     font-family: 'Fraunces', serif;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.3em;
     color: var(--rose-deep);
     display: block;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.4rem;
   }
 
   .contact-detail-value {
     font-family: 'Fraunces', serif;
-    font-size: 1.15rem;
+    font-weight: 300;
+    font-size: 1.25rem;
     color: var(--wine);
     text-decoration: none;
     transition: color 0.3s ease;
+    display: inline-block;
   }
 
   .contact-detail-value:hover { color: var(--rose-deep); }
@@ -465,7 +533,6 @@
   .contact-form {
     background: var(--cream);
     padding: 3rem;
-    border-radius: 4px;
     box-shadow: 0 20px 60px rgba(74, 31, 47, 0.08);
   }
 
@@ -473,9 +540,9 @@
 
   .form-group label {
     font-family: 'Fraunces', serif;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     color: var(--wine);
     display: block;
     margin-bottom: 0.6rem;
@@ -508,9 +575,9 @@
     border: none;
     padding: 1.1rem 3rem;
     font-family: 'Fraunces', serif;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.3em;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     margin-top: 1rem;
@@ -530,61 +597,89 @@
   .submit-btn span { position: relative; z-index: 1; }
   .submit-btn:hover::before { left: 0; }
 
+  /* FOOTER */
   footer {
     background: var(--wine);
     color: var(--cream);
-    padding: 4rem 2rem 2rem;
+    padding: 5rem 2rem 2.5rem;
     text-align: center;
     position: relative;
   }
 
   .footer-name {
     font-family: 'Italianno', cursive;
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     color: var(--blush);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     line-height: 1;
   }
 
   .footer-tagline {
     font-family: 'Fraunces', serif;
     font-style: italic;
-    font-size: 1rem;
+    font-weight: 300;
+    font-size: 1.05rem;
     color: var(--blush-soft);
-    opacity: 0.8;
+    opacity: 0.85;
     margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-stay {
+    font-family: 'Fraunces', serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: var(--blush);
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
   }
 
   .footer-socials {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
+    gap: 1.8rem;
+    margin-bottom: 3.5rem;
   }
 
   .footer-socials a {
     color: var(--blush);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(252, 233, 239, 0.25);
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     text-decoration: none;
-    font-family: 'Fraunces', serif;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    transition: color 0.3s ease;
   }
 
-  .footer-socials a:hover { color: var(--cream); }
+  .footer-socials a:hover {
+    color: var(--wine);
+    background: var(--blush);
+    border-color: var(--blush);
+    transform: translateY(-3px);
+  }
+
+  .footer-socials svg {
+    width: 20px;
+    height: 20px;
+  }
 
   .footer-copyright {
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-size: 0.85rem;
     color: var(--blush-soft);
-    opacity: 0.6;
+    opacity: 0.55;
     padding-top: 2rem;
     border-top: 1px solid rgba(252, 233, 239, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
   }
 
+  /* Reveal */
   .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -593,15 +688,26 @@
 
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 1.2rem 1.5rem; }
+    nav.scrolled { padding: 1rem 1.5rem; }
     .nav-links { gap: 1.2rem; }
-    .nav-links a { font-size: 0.7rem; letter-spacing: 0.15em; }
+    .nav-links a { font-size: 0.65rem; letter-spacing: 0.15em; }
+
     section { padding: 5rem 1.5rem; }
+    .section-header { margin-bottom: 3rem; }
+    .section-label::before,
+    .section-label::after { width: 20px; }
+
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .about-image { box-shadow: 15px 15px 0 var(--blush-soft); }
+    .about-text-block { padding-right: 0; }
+
     .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
     .contact-form { padding: 2rem; }
+    .contact::before { font-size: 12rem; opacity: 0.05; }
+
     .gallery-grid {
       grid-template-columns: repeat(6, 1fr);
       grid-auto-rows: 70px;
@@ -611,17 +717,24 @@
     .g3 { grid-column: span 3; grid-row: span 3; }
     .g4 { grid-column: span 6; grid-row: span 3; }
     .g5 { grid-column: span 6; grid-row: span 3; }
+
+    /* On mobile, simplify echo stack to one heading */
+    .echo-stack .echo:nth-child(1),
+    .echo-stack .echo:nth-child(2) { display: none; }
+
+    .footer-name { font-size: 3.5rem; }
   }
 
   @media (max-width: 600px) {
-    .nav-logo { font-size: 1.8rem; }
+    .nav-logo { font-size: 1.9rem; }
     .nav-links { display: none; }
+    .hero { background-attachment: scroll; }
   }
 </style>
 </head>
 <body>
 
-<nav>
+<nav id="mainNav">
   <div class="nav-logo">Annah George</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -633,30 +746,16 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="staff-decoration top">
-    <div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div>
-  </div>
-  <div class="staff-decoration bottom">
-    <div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div><div class="staff-line"></div>
-  </div>
-
-  <div class="floating-note n1">♪</div>
-  <div class="floating-note n2">♫</div>
-  <div class="floating-note n3">♩</div>
-  <div class="floating-note n4">♬</div>
-
   <div class="hero-content">
-    <div class="hero-eyebrow">— composer & sound artist —</div>
     <h1>
-      Annah
-      <span class="italic">George</span>
+      <span class="first-name">Annah</span>
+      <span class="last-name">George</span>
     </h1>
     <p class="hero-tagline">
-      Houston-born composer bridging film, songwriting, and contemporary pop — currently at the Royal Northern College of Music, Manchester
+      Student composer studying at the Royal Northern College of Music
     </p>
   </div>
-
-  <div class="scroll-indicator">scroll to listen ↓</div>
+  <div class="scroll-indicator">scroll ↓</div>
 </section>
 
 <!-- ABOUT -->
@@ -666,24 +765,26 @@
       <div class="about-image reveal">
         <img src="IMG-20260526-WA0034.jpg" alt="Annah George" />
       </div>
-      <div class="about-text reveal">
+      <div class="about-text-block reveal">
         <div class="section-label">About</div>
-        <h2 class="section-title">
+        <h2 class="about-title">
           A little
-          <span class="script">about her</span>
+          <span class="script">about Annah</span>
         </h2>
-        <p>
-          Annah George is a composer and musician from Houston, Texas, currently studying at the Royal Northern College of Music under Dr. Anna Appleby and Dr. Larry Goves.
-        </p>
-        <p>
-          Her artistic voice is shaped by a foundation in classical violin and pop vocal performance, resulting in a style that moves fluidly between genres and disciplines. At the core of her music is a deep commitment to melody and lyricism, with a natural instinct to treat every instrument as if it were singing its own line.
-        </p>
-        <p>
-          She explores themes of love, beauty, humanity, and playfulness, often balancing rhythmic vitality with music that carries depth and invites the listener into deeper reflection.
-        </p>
-        <p>
-          Annah is developing a distinctive creative identity that bridges film composition and contemporary pop artistry, with a practice that spans screen, songwriting, and recorded music.
-        </p>
+        <div class="about-text">
+          <p>
+            Annah George is a composer and musician from Houston, Texas, currently studying at the Royal Northern College of Music under Dr. Anna Appleby and Dr. Larry Goves.
+          </p>
+          <p>
+            Her artistic voice is shaped by a foundation in classical violin and pop vocal performance, resulting in a style that moves fluidly between genres and disciplines. At the core of her music is a deep commitment to melody and lyricism, with a natural instinct to treat every instrument as if it were singing its own line.
+          </p>
+          <p>
+            She explores themes of love, beauty, humanity, and playfulness, often balancing rhythmic vitality with music that carries depth and invites the listener into deeper reflection.
+          </p>
+          <p>
+            Annah is developing a distinctive creative identity that bridges film composition and contemporary pop artistry, with a practice that spans screen, songwriting, and recorded music.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -692,15 +793,13 @@
 <!-- MUSIC -->
 <section class="music" id="music">
   <div class="container">
-    <div class="reveal">
+    <div class="section-header reveal">
       <div class="section-label">Listen</div>
-      <h2 class="section-title">
-        Selected
-        <span class="script">works</span>
-      </h2>
-      <p class="music-intro">
-        A selection of recent compositions, performances, and recordings. Each piece tells its own story.
-      </p>
+      <div class="echo-stack">
+        <div class="echo">Selected <span class="script">works</span></div>
+        <div class="echo">Selected <span class="script">works</span></div>
+        <div class="echo">Selected <span class="script">works</span></div>
+      </div>
     </div>
 
     <div class="video-grid">
@@ -739,8 +838,8 @@
 
 <!-- GALLERY -->
 <section class="gallery" id="gallery">
-  <div class="container">
-    <div class="reveal">
+  <div class="container-wide">
+    <div class="section-header reveal">
       <div class="section-label">Gallery</div>
       <h2 class="section-title">
         Behind the
@@ -750,19 +849,19 @@
 
     <div class="gallery-grid">
       <div class="gallery-item g1 reveal">
-        <img src="IMG-20260216-WA0004.jpg" alt="" />
-      </div>
-      <div class="gallery-item g2 reveal">
         <img src="IMG-20260526-WA0036.jpg" alt="" />
       </div>
-      <div class="gallery-item g3 reveal">
+      <div class="gallery-item g2 reveal">
         <img src="IMG-20260526-WA0035.jpg" alt="" />
       </div>
-      <div class="gallery-item g4 reveal">
+      <div class="gallery-item g3 reveal">
         <img src="IMG-20260526-WA0037.jpg" alt="" />
       </div>
-      <div class="gallery-item g5 reveal">
+      <div class="gallery-item g4 reveal">
         <img src="IMG-20260526-WA0038.jpg" alt="" />
+      </div>
+      <div class="gallery-item g5 reveal">
+        <img src="IMG-20260526-WA0034.jpg" alt="" />
       </div>
     </div>
   </div>
@@ -771,45 +870,39 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="container">
-    <div class="contact-grid">
-      <div class="contact-text reveal">
-        <div class="section-label">Get in touch</div>
-        <h2 class="section-title">
-          Let's
-          <span class="script">connect</span>
-        </h2>
-        <p>
-          Whether you're a performer looking for new repertoire, a fellow composer, a collaborator with an idea, or simply someone who enjoyed the music — I'd love to hear from you.
-        </p>
-        <p>
-          I'm always open to commissions, collaborations, and conversations about sound.
-        </p>
+    <div class="section-header reveal">
+      <div class="section-label">Get in touch</div>
+      <h2 class="section-title">
+        Connect with
+        <span class="script">Annah</span>
+      </h2>
+    </div>
 
-        <div class="contact-details">
-          <div class="contact-detail">
-            <span class="contact-detail-label">Email</span>
-            <a href="mailto:missmusiccomposer@gmail.com" class="contact-detail-value">missmusiccomposer@gmail.com</a>
-          </div>
-          <div class="contact-detail">
-            <span class="contact-detail-label">Alternate Email</span>
-            <a href="mailto:missmusiccomposer@outlook.com" class="contact-detail-value">missmusiccomposer@outlook.com</a>
-          </div>
-          <div class="contact-detail">
-            <span class="contact-detail-label">Instagram</span>
-            <a href="https://www.instagram.com/missmusiccomposer" target="_blank" rel="noopener" class="contact-detail-value">@missmusiccomposer</a>
-          </div>
-          <div class="contact-detail">
-            <span class="contact-detail-label">YouTube</span>
-            <a href="https://youtube.com/@missmusiccomposer" target="_blank" rel="noopener" class="contact-detail-value">@missmusiccomposer</a>
-          </div>
-          <div class="contact-detail">
-            <span class="contact-detail-label">Based in</span>
-            <span class="contact-detail-value">Manchester, United Kingdom</span>
-          </div>
-          <div class="contact-detail">
-            <span class="contact-detail-label">Studying at</span>
-            <span class="contact-detail-value">Royal Northern College of Music</span>
-          </div>
+    <div class="contact-grid">
+      <div class="contact-details reveal">
+        <div class="contact-detail">
+          <span class="contact-detail-label">Email</span>
+          <a href="mailto:missmusiccomposer@gmail.com" class="contact-detail-value">missmusiccomposer@gmail.com</a>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label">Alternate Email</span>
+          <a href="mailto:missmusiccomposer@outlook.com" class="contact-detail-value">missmusiccomposer@outlook.com</a>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label">Instagram</span>
+          <a href="https://www.instagram.com/missmusiccomposer" target="_blank" rel="noopener" class="contact-detail-value">@missmusiccomposer</a>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label">YouTube</span>
+          <a href="https://youtube.com/@missmusiccomposer" target="_blank" rel="noopener" class="contact-detail-value">@missmusiccomposer</a>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label">Based in</span>
+          <span class="contact-detail-value">Manchester, United Kingdom</span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label">Studying at</span>
+          <span class="contact-detail-value">Royal Northern College of Music</span>
         </div>
       </div>
 
@@ -838,26 +931,56 @@
 
 <footer>
   <div class="footer-name">Annah George</div>
-  <div class="footer-tagline">composer · sound artist · storyteller</div>
+  <div class="footer-tagline">composer · musician · singer · poet</div>
+
+  <div class="footer-stay">stay connected</div>
   <div class="footer-socials">
-    <a href="https://youtube.com/@missmusiccomposer" target="_blank" rel="noopener">YouTube</a>
-    <a href="https://www.instagram.com/missmusiccomposer" target="_blank" rel="noopener">Instagram</a>
-    <a href="mailto:missmusiccomposer@gmail.com">Email</a>
+    <a href="https://www.instagram.com/missmusiccomposer" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle>
+      </svg>
+    </a>
+    <a href="https://youtube.com/@missmusiccomposer" target="_blank" rel="noopener" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+      </svg>
+    </a>
+    <a href="mailto:missmusiccomposer@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+    </a>
   </div>
+
   <div class="footer-copyright">
-    © 2026 Annah George. All works original. Made with love in Manchester.
+    © 2026 Annah George. All works original.
   </div>
 </footer>
 
 <script>
+  // Reveal on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+  // Nav background on scroll
+  const nav = document.getElementById('mainNav');
+  const onScroll = () => {
+    if (window.scrollY > 80) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Form handler (mailto fallback)
   function handleSubmit() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
