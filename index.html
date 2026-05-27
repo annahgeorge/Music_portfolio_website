@@ -742,6 +742,22 @@
     margin: 0 auto;
   }
 
+  /* Divider between About and Music */
+  .divider-about {
+    background: var(--cream);
+    padding: 0 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .divider-about svg {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    color: var(--rose-deep);
+  }
+
   /* Reveal */
   .reveal {
     opacity: 0;
@@ -856,6 +872,63 @@
     </div>
   </div>
 </section>
+
+<!-- ABOUT-MUSIC DIVIDER -->
+<div class="divider-about">
+  <svg viewBox="0 0 700 110" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" aria-hidden="true">
+    <!-- Left outer line -->
+    <line x1="30" y1="55" x2="120" y2="55" stroke-width="0.6" opacity="0.35"/>
+
+    <!-- Left vine curling up -->
+    <path d="M 120 55 C 160 55, 180 35, 210 45 C 230 52, 245 48, 265 58"
+          stroke-width="0.9" opacity="0.55" stroke-linecap="round"/>
+    <!-- Left vine curling down -->
+    <path d="M 120 55 C 160 55, 180 75, 210 65 C 230 58, 245 62, 265 52"
+          stroke-width="0.7" opacity="0.4" stroke-linecap="round"/>
+
+    <!-- Left small leaves -->
+    <path d="M 170 38 Q 178 32, 186 38 Q 178 44, 170 38 Z" fill="currentColor" stroke="none" opacity="0.5"/>
+    <path d="M 195 72 Q 203 66, 211 72 Q 203 78, 195 72 Z" fill="currentColor" stroke="none" opacity="0.45"/>
+
+    <!-- Left small bud -->
+    <g transform="translate(225, 42)">
+      <circle r="4" stroke-width="0.8" fill="rgba(184, 95, 118, 0.25)"/>
+      <circle r="1.5" fill="currentColor" opacity="0.85" stroke="none"/>
+    </g>
+
+    <!-- Central rose -->
+    <g transform="translate(350, 55)">
+      <path d="M -16 -4 C -18 -14, -8 -18, -2 -12 C 2 -18, 12 -16, 14 -6 C 18 0, 14 10, 6 12 C 2 18, -10 16, -14 8 C -20 4, -18 -2, -16 -4 Z"
+            stroke-width="0.9" fill="rgba(184, 95, 118, 0.18)" opacity="0.9"/>
+      <path d="M -8 -2 C -10 -8, -2 -10, 2 -6 C 6 -10, 12 -6, 10 0 C 12 6, 4 8, 0 6 C -4 8, -10 4, -8 -2 Z"
+            stroke-width="0.7" fill="rgba(184, 95, 118, 0.3)" opacity="0.95"/>
+      <circle r="3" stroke-width="0.6" fill="rgba(184, 95, 118, 0.55)"/>
+      <circle r="1" fill="currentColor" stroke="none"/>
+      <path d="M -30 8 Q -22 4, -16 10 Q -22 14, -30 8 Z" fill="currentColor" stroke="none" opacity="0.45"/>
+      <path d="M 30 8 Q 22 4, 16 10 Q 22 14, 30 8 Z" fill="currentColor" stroke="none" opacity="0.45"/>
+    </g>
+
+    <!-- Right small bud -->
+    <g transform="translate(475, 42)">
+      <circle r="4" stroke-width="0.8" fill="rgba(184, 95, 118, 0.25)"/>
+      <circle r="1.5" fill="currentColor" opacity="0.85" stroke="none"/>
+    </g>
+
+    <!-- Right vine curling up -->
+    <path d="M 580 55 C 540 55, 520 35, 490 45 C 470 52, 455 48, 435 58"
+          stroke-width="0.9" opacity="0.55" stroke-linecap="round"/>
+    <!-- Right vine curling down -->
+    <path d="M 580 55 C 540 55, 520 75, 490 65 C 470 58, 455 62, 435 52"
+          stroke-width="0.7" opacity="0.4" stroke-linecap="round"/>
+
+    <!-- Right small leaves -->
+    <path d="M 530 38 Q 522 32, 514 38 Q 522 44, 530 38 Z" fill="currentColor" stroke="none" opacity="0.5"/>
+    <path d="M 505 72 Q 497 66, 489 72 Q 497 78, 505 72 Z" fill="currentColor" stroke="none" opacity="0.45"/>
+
+    <!-- Right outer line -->
+    <line x1="580" y1="55" x2="670" y2="55" stroke-width="0.6" opacity="0.35"/>
+  </svg>
+</div>
 
 <!-- MUSIC -->
 <section class="music" id="music">
